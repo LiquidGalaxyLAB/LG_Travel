@@ -53,33 +53,32 @@ class DashboardPageState extends State<DashboardPage> {
     return res;
   }
 
-  List<Widget> notLoaded() {
-    return const [
-      SizedBox(
-          height: 400,
-          width: 420,
-          child: Card(
-              color: Colors.white,
-              child: Center(child: CircularProgressIndicator()))),
-      SizedBox(
-          height: 400,
-          width: 420,
-          child: Card(
-              color: Colors.white,
-              child: Center(child: CircularProgressIndicator()))),
-      SizedBox(
-          height: 400,
-          width: 420,
-          child: Card(
-              color: Colors.white,
-              child: Center(child: CircularProgressIndicator()))),
-    ];
-  }
+  // List<Widget> notLoaded() {
+  //   return const [
+  //     SizedBox(
+  //         height: 400,
+  //         width: 420,
+  //         child: Card(
+  //             color: Colors.white,
+  //             child: Center(child: CircularProgressIndicator()))),
+  //     SizedBox(
+  //         height: 400,
+  //         width: 420,
+  //         child: Card(
+  //             color: Colors.white,
+  //             child: Center(child: CircularProgressIndicator()))),
+  //     SizedBox(
+  //         height: 400,
+  //         width: 420,
+  //         child: Card(
+  //             color: Colors.white,
+  //             child: Center(child: CircularProgressIndicator()))),
+  //   ];
+  // }
 
   @override
   Widget build(BuildContext context) {
     _getInitialInfo();
-    init();
     checkConnectionStatus();
 
     return Scaffold(
@@ -262,7 +261,7 @@ class DashboardPageState extends State<DashboardPage> {
       actions: [
         Chip(
             label: Row(children: [
-              const Text('LG Connection'),
+              const Text('LG Connection:'),
               isConnected == true
                   ? const Icon(
                       Icons.circle,

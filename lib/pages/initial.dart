@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:food/pages/copy_test.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({super.key});
 
   @override
   State<InitialPage> createState() => _InitialPageState();
-}
-
-void _launchURL(Uri path) async {
-  if (await canLaunchUrl(path)) {
-    await launchUrl(path);
-  } else {
-    throw 'Could not launch $path';
-  }
 }
 
 class _InitialPageState extends State<InitialPage> {
@@ -58,8 +49,22 @@ class _InitialPageState extends State<InitialPage> {
                     // Navigate to the next page with slide transition
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => const DashboardPage(),
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const DashboardPage(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          const begin = Offset(1.0, 0.0);
+                          const end = Offset.zero;
+                          const curve = Curves.easeInOut;
+                          var tween = Tween(begin: begin, end: end)
+                              .chain(CurveTween(curve: curve));
+                          var offsetAnimation = animation.drive(tween);
+                          return SlideTransition(
+                            position: offsetAnimation,
+                            child: child,
+                          );
+                        },
                       ),
                     );
                   },
