@@ -84,7 +84,7 @@ class DashboardPageState extends State<DashboardPage> {
 
     return Scaffold(
         backgroundColor: Colors.black,
-        appBar: appBar(context),
+        appBar: appBar(),
         body: ListView(
           children: [const SizedBox(height: 20), _popularBreakfasts()],
         ));
@@ -235,7 +235,7 @@ class DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  AppBar appBar(BuildContext context) {
+  AppBar appBar() {
     return AppBar(
       leading: IconButton(
         icon: const Icon(
@@ -255,14 +255,14 @@ class DashboardPageState extends State<DashboardPage> {
         // Icon(Icons.coronavirus_outlined, size: 35),
         SizedBox(width: 15),
         Text(
-          'agagagagagaga',
+          'Food to Devour',
           style: TextStyle(color: Colors.white),
         ),
       ]),
       actions: [
         Chip(
             label: Row(children: [
-              const Text('LG Connection: '),
+              const Text('LG Connection'),
               isConnected == true
                   ? const Icon(
                       Icons.circle,
