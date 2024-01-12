@@ -102,7 +102,7 @@ class _BerlinPageState extends State<BerlinPage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(50.0),
-                      child: Container(
+                      child: SizedBox(
                         height: 500,
                         child: IgnorePointer(
                           child: FlutterMap(

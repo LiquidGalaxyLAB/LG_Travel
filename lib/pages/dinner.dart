@@ -118,11 +118,7 @@ class _DinnerPageState extends State<DinnerPage> {
                             fontSize: 16),
                       ),
                       Text(
-                        popularDiets[index].level +
-                            ' | ' +
-                            popularDiets[index].duration +
-                            ' | ' +
-                            popularDiets[index].calorie,
+                        '${popularDiets[index].level} | ${popularDiets[index].duration} | ${popularDiets[index].calorie}',
                         style: const TextStyle(
                             color: Color(0xff7B6F72),
                             fontSize: 13,
@@ -165,7 +161,7 @@ class _DinnerPageState extends State<DinnerPage> {
         const SizedBox(
           height: 15,
         ),
-        Container(
+        SizedBox(
           // color: Colors.green,
           height: 240,
           child: ListView.separated(
@@ -199,11 +195,7 @@ class _DinnerPageState extends State<DinnerPage> {
                             ),
                           ),
                           Text(
-                            diets[index].level +
-                                ' | ' +
-                                diets[index].duration +
-                                ' | ' +
-                                diets[index].calorie,
+                            '${diets[index].level} | ${diets[index].duration} | ${diets[index].calorie}',
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 13,
@@ -267,7 +259,7 @@ class _DinnerPageState extends State<DinnerPage> {
         const SizedBox(
           height: 15,
         ),
-        Container(
+        SizedBox(
           height: 120,
           // color: Colors.green,
           child: ListView.separated(
@@ -330,7 +322,7 @@ class _DinnerPageState extends State<DinnerPage> {
           prefixIcon: Padding(
               padding: const EdgeInsets.all(12),
               child: SvgPicture.asset('assets/svgs/Search.svg')),
-          suffixIcon: Container(
+          suffixIcon: SizedBox(
             width: 100,
             child: IntrinsicHeight(
               child: Row(
