@@ -104,69 +104,67 @@ class _ParisPageState extends State<ParisPage> {
                       padding: const EdgeInsets.all(50.0),
                       child: SizedBox(
                         height: 500,
-                        child: IgnorePointer(
-                          child: FlutterMap(
-                              options: MapOptions(
-                                initialCenter: LatLng(nations[1].centerLat,
-                                    nations[1].centerLong),
-                                initialZoom: 14.4,
+                        child: FlutterMap(
+                            options: MapOptions(
+                              initialCenter: LatLng(
+                                  nations[1].centerLat, nations[1].centerLong),
+                              initialZoom: 14.4,
+                            ),
+                            children: [
+                              TileLayer(
+                                urlTemplate:
+                                    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                // subdomains: ['a', 'b', 'c'],
+                                userAgentPackageName: 'com.example.app',
+                                tileSize: 256,
                               ),
-                              children: [
-                                TileLayer(
-                                  urlTemplate:
-                                      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                  // subdomains: ['a', 'b', 'c'],
-                                  userAgentPackageName: 'com.example.app',
-                                  tileSize: 256,
-                                ),
-                                MarkerLayer(
-                                  markers: [
-                                    //28.607532562790947, 77.26296847283321
-                                    Marker(
-                                      point: LatLng(
-                                          nations[1].lat1, nations[1].longi1),
-                                      width: 10,
-                                      height: 10,
-                                      child: const Icon(Icons.location_on,
-                                          size: 50, color: Colors.red),
-                                    ),
-                                    Marker(
-                                      point: LatLng(
-                                          nations[1].lat2, nations[1].longi2),
-                                      width: 10,
-                                      height: 10,
-                                      child: const Icon(Icons.location_on,
-                                          size: 50, color: Colors.red),
-                                    ),
-                                    //28.599092746111335, 77.19224398692732
-                                    Marker(
-                                      point: LatLng(
-                                          nations[1].lat3, nations[1].longi3),
-                                      width: 10,
-                                      height: 10,
-                                      child: const Icon(Icons.location_on,
-                                          size: 50, color: Colors.red),
-                                    ),
-                                    Marker(
-                                      point: LatLng(
-                                          nations[1].lat4, nations[1].longi4),
-                                      width: 10,
-                                      height: 10,
-                                      child: const Icon(Icons.location_on,
-                                          size: 50, color: Colors.red),
-                                    ),
-                                    Marker(
-                                      point: LatLng(
-                                          nations[1].lat5, nations[1].longi5),
-                                      width: 10,
-                                      height: 10,
-                                      child: const Icon(Icons.location_on,
-                                          size: 50, color: Colors.red),
-                                    ),
-                                  ],
-                                ),
-                              ]),
-                        ),
+                              MarkerLayer(
+                                markers: [
+                                  //28.607532562790947, 77.26296847283321
+                                  Marker(
+                                    point: LatLng(
+                                        nations[1].lat1, nations[1].longi1),
+                                    width: 10,
+                                    height: 10,
+                                    child: const Icon(Icons.location_on,
+                                        size: 50, color: Colors.red),
+                                  ),
+                                  Marker(
+                                    point: LatLng(
+                                        nations[1].lat2, nations[1].longi2),
+                                    width: 10,
+                                    height: 10,
+                                    child: const Icon(Icons.location_on,
+                                        size: 50, color: Colors.red),
+                                  ),
+                                  //28.599092746111335, 77.19224398692732
+                                  Marker(
+                                    point: LatLng(
+                                        nations[1].lat3, nations[1].longi3),
+                                    width: 10,
+                                    height: 10,
+                                    child: const Icon(Icons.location_on,
+                                        size: 50, color: Colors.red),
+                                  ),
+                                  Marker(
+                                    point: LatLng(
+                                        nations[1].lat4, nations[1].longi4),
+                                    width: 10,
+                                    height: 10,
+                                    child: const Icon(Icons.location_on,
+                                        size: 50, color: Colors.red),
+                                  ),
+                                  Marker(
+                                    point: LatLng(
+                                        nations[1].lat5, nations[1].longi5),
+                                    width: 10,
+                                    height: 10,
+                                    child: const Icon(Icons.location_on,
+                                        size: 50, color: Colors.red),
+                                  ),
+                                ],
+                              ),
+                            ]),
                       ),
                     ),
                   ],
