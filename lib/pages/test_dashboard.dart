@@ -235,9 +235,13 @@ class DashboardPageState extends State<DashboardPage> {
   AppBar appBar(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.black,
-      automaticallyImplyLeading: false,
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back, color: Colors.white),
+        onPressed: () {
+          Navigator.pop(context); // Navigate back to the previous screen
+        },
+      ),
       title: const Row(children: [
-        // Icon(Icons.coronavirus_outlined, size: 35),
         SizedBox(width: 15),
         Text(
           'Food To Devour',
