@@ -70,7 +70,7 @@ class _DelhiPageState extends State<DelhiPage> {
                               Text(
                                 nations[0].title,
                                 style: const TextStyle(
-                                    fontSize: 30,
+                                    fontSize: 35,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -88,6 +88,7 @@ class _DelhiPageState extends State<DelhiPage> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 15),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

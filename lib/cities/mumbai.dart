@@ -88,6 +88,7 @@ class _MumbaiPageState extends State<MumbaiPage> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 15),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

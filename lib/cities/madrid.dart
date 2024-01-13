@@ -88,6 +88,7 @@ class _MadridPageState extends State<MadridPage> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 15),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

@@ -88,6 +88,7 @@ class _LondonPageState extends State<LondonPage> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 15),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

@@ -88,6 +88,7 @@ class _BerlinPageState extends State<BerlinPage> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 15),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

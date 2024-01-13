@@ -100,6 +100,7 @@ class _ParisPageState extends State<ParisPage> {
                             fontWeight: FontWeight.bold,
                           )),
                     ),
+                    const SizedBox(height: 15),
                     Padding(
                       padding: const EdgeInsets.all(50.0),
                       child: SizedBox(

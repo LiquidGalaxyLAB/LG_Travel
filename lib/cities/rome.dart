@@ -88,6 +88,7 @@ class _RomePageState extends State<RomePage> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 15),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -108,7 +109,7 @@ class _RomePageState extends State<RomePage> {
                             options: MapOptions(
                               initialCenter: LatLng(
                                   nations[6].centerLat, nations[6].centerLong),
-                              initialZoom: 13,
+                              initialZoom: 12,
                             ),
                             children: [
                               TileLayer(
