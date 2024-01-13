@@ -44,9 +44,7 @@ class DashboardPageState extends State<DashboardPage> {
 
     setState(() {
       isConnected = res;
-      isConnected == true
-          ? logger.i("Connection done in test")
-          : logger.i("Connection failedin test");
+
       loaded = true;
     });
     return res;
@@ -194,8 +192,7 @@ class DashboardPageState extends State<DashboardPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const LondonPage()),
+                                        builder: (context) => const RomePage()),
                                   );
                                   break;
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food/pages/copy_test.dart';
+import 'package:food/pages/test_dashboard.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({super.key});
