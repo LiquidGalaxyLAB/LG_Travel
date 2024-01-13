@@ -194,8 +194,7 @@ class DashboardPageState extends State<DashboardPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const BarcelonaPage()),
+                                        builder: (context) => const RomePage()),
                                   );
                                   break;
 
