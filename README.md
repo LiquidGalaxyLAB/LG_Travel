@@ -1,6 +1,20 @@
-# food
+# LG_Breakfast
 
-A new Flutter project.
+A flutter app developed as a part of the KISS Flutter Contest by Liquid Galaxy
+
+# Overview
+
+The App tells you about the popular breakfasts in major world cities and provides you popular locations to try them.
+
+Each tab of the city has information about their delicious food and a map showing you the marked locations. 
+
+The UI is simple yet vibrant.
+
+# LG_Connection
+
+The App develops an SSH connection with the LG Rig. It has a config page which has four text fiels namely ip address, username, password, number of machines.
+After connecting the checked circle turns green. In the Dashboard Page the Connection button turns green as well.
+
 
 ## Getting Started
 
