@@ -52,9 +52,6 @@ class ConfigPageState extends State<ConfigPage> {
 
     setState(() {
       isConnected = res;
-      isConnected == true
-          ? logger.i("Connection done right")
-          : logger.i("Not Done");
     });
     return res;
   }

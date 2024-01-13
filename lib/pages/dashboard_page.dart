@@ -45,36 +45,32 @@ class DashboardPageState extends State<DashboardPage> {
 
     setState(() {
       isConnected = res;
-      isConnected == true
-          ? logger.i("Connection done in test")
-          : logger.i("Connection failedin test");
-      loaded = true;
     });
     return res;
   }
 
-  // List<Widget> notLoaded() {
-  //   return const [
-  //     SizedBox(
-  //         height: 400,
-  //         width: 420,
-  //         child: Card(
-  //             color: Colors.white,
-  //             child: Center(child: CircularProgressIndicator()))),
-  //     SizedBox(
-  //         height: 400,
-  //         width: 420,
-  //         child: Card(
-  //             color: Colors.white,
-  //             child: Center(child: CircularProgressIndicator()))),
-  //     SizedBox(
-  //         height: 400,
-  //         width: 420,
-  //         child: Card(
-  //             color: Colors.white,
-  //             child: Center(child: CircularProgressIndicator()))),
-  //   ];
-  // }
+  List<Widget> notLoaded() {
+    return const [
+      SizedBox(
+          height: 400,
+          width: 420,
+          child: Card(
+              color: Colors.white,
+              child: Center(child: CircularProgressIndicator()))),
+      SizedBox(
+          height: 400,
+          width: 420,
+          child: Card(
+              color: Colors.white,
+              child: Center(child: CircularProgressIndicator()))),
+      SizedBox(
+          height: 400,
+          width: 420,
+          child: Card(
+              color: Colors.white,
+              child: Center(child: CircularProgressIndicator()))),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,6 +133,8 @@ class DashboardPageState extends State<DashboardPage> {
                               String page = categories[index].name;
                               switch (page) {
                                 case 'Delhi':
+                                  logger.i(
+                                      "Navigating to ${categories[index].name}");
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -146,6 +144,8 @@ class DashboardPageState extends State<DashboardPage> {
                                   break;
 
                                 case 'Paris':
+                                  logger.i(
+                                      "Navigating to ${categories[index].name}");
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -155,6 +155,8 @@ class DashboardPageState extends State<DashboardPage> {
                                   break;
 
                                 case 'London':
+                                  logger.i(
+                                      "Navigating to ${categories[index].name}");
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -164,6 +166,8 @@ class DashboardPageState extends State<DashboardPage> {
                                   break;
 
                                 case 'Madrid':
+                                  logger.i(
+                                      "Navigating to ${categories[index].name}");
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -173,6 +177,8 @@ class DashboardPageState extends State<DashboardPage> {
                                   break;
 
                                 case 'Mumbai':
+                                  logger.i(
+                                      "Navigating to ${categories[index].name}");
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -182,6 +188,8 @@ class DashboardPageState extends State<DashboardPage> {
                                   break;
 
                                 case 'Berlin':
+                                  logger.i(
+                                      "Navigating to ${categories[index].name}");
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -191,6 +199,8 @@ class DashboardPageState extends State<DashboardPage> {
                                   break;
 
                                 case 'Rome':
+                                  logger.i(
+                                      "Navigating to ${categories[index].name}");
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -199,6 +209,8 @@ class DashboardPageState extends State<DashboardPage> {
                                   break;
 
                                 case 'Barcelona':
+                                  logger.i(
+                                      "Navigating to ${categories[index].name}");
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
