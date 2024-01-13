@@ -19,6 +19,10 @@ The UI is simple yet vibrant.
 # City Pages
 ![Screenshot 2024-01-13 120850](https://github.com/prithvihehe/LG_Breakfast/assets/122910425/09dd70b5-eccb-4a75-9c02-ad3c11385edd)
 
+# Maps in the city page
+![Screenshot 2024-01-13 163211](https://github.com/prithvihehe/LG_Breakfast/assets/122910425/025d1a1c-251f-41c6-a303-3614cbc96365)
+
+
 
 # LG_Connection
 
