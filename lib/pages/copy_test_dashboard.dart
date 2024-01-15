@@ -1,16 +1,12 @@
 import 'package:dartssh2/dartssh2.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:food/components/connection_flag.dart';
 import 'package:food/models/category_models.dart';
-import 'package:food/models/places.dart';
 import 'package:food/pages/config_page.dart';
 import 'package:food/cities/constants.dart';
-import 'package:food/monuments/constants.dart';
 import 'package:food/services/lg_connection.dart';
 import 'package:flutter/material.dart';
 import 'package:food/services/ssh.dart';
 import 'package:logger/logger.dart';
-import 'package:food/models/places.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -21,13 +17,11 @@ class DashboardPage extends StatefulWidget {
   }
 }
 
-bool connectionStatus = false;
+bool isConnected = false;
 
 class DashboardPageState extends State<DashboardPage> {
-  late SSH ssh;
   var logger = Logger();
   List<CategoryModel> categories = [];
-  List<PlaceModel> places = [];
 
   bool loaded = false;
   bool loadedData = false;
@@ -35,269 +29,66 @@ class DashboardPageState extends State<DashboardPage> {
 
   void _getInitialInfo() {
     categories = CategoryModel.getCategories();
-    places = PlaceModel.getPlaces();
+    // diets = DietModel.getDiets();
+    // popularDiets = PopularDietsModel.getPopularDiets();
   }
 
-  @override
-  void initState() {
-    super.initState();
-    ssh = SSH();
-    _connectToLG();
+  // init() async {
+  //   await checkConnection();
+  //   // isConnected = true;
+  //   loaded = true;
+  // }
+  init() async {
+    await checkConnectionStatus();
+    loaded = true;
   }
 
-  Future<void> _connectToLG() async {
-    bool? result = await ssh.connectToLG();
+  checkConnectionStatus() async {
+    bool res = await LGConnection().checkConnection();
+
     setState(() {
-      connectionStatus = result!;
+      isConnected = res;
+
+      loaded = true;
     });
+    return res;
+  }
+
+  List<Widget> notLoaded() {
+    return const [
+      SizedBox(
+          height: 400,
+          width: 420,
+          child: Card(
+              color: Colors.white,
+              child: Center(child: CircularProgressIndicator()))),
+      SizedBox(
+          height: 400,
+          width: 420,
+          child: Card(
+              color: Colors.white,
+              child: Center(child: CircularProgressIndicator()))),
+      SizedBox(
+          height: 400,
+          width: 420,
+          child: Card(
+              color: Colors.white,
+              child: Center(child: CircularProgressIndicator()))),
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
     _getInitialInfo();
-    _connectToLG();
-    // initState();
-    // checkConnectionStatus();
+    init();
+    checkConnectionStatus();
 
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: appBar(context),
         body: ListView(
-          children: [
-            const SizedBox(height: 20),
-            _popularBreakfasts(),
-            const SizedBox(height: 20),
-            _popularMonuments()
-          ],
+          children: [const SizedBox(height: 20), _popularBreakfasts()],
         ));
-  }
-
-  Column _popularMonuments() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 20),
-          child: Text("Popular Monuments in ",
-              style: TextStyle(color: Colors.white, fontSize: 17)),
-        ),
-        const SizedBox(height: 25),
-        SizedBox(
-          height: 200,
-          // decoration: const BoxDecoration(color: Colors.amber),
-          child: ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(
-                    width: 50,
-                  ),
-              itemCount: places.length,
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              itemBuilder: (context, index) {
-                return Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                        color: places[index].boxColor.withOpacity(0.8),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                              width: 65,
-                              height: 65,
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                              ),
-                              child: SvgPicture.asset(places[index].iconPath)),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Center(
-                              child: Text(places[index].name,
-                                  style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromRGBO(0, 0, 0, 1))),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () async {
-                              String page = places[index].name;
-                              switch (page) {
-                                case 'Taj Mahal':
-                                  SSH ssh =
-                                      SSH(); //Re-initialization of the SSH instance to avoid errors for beginners
-                                  await ssh.connectToLG();
-                                  SSHSession? execResult =
-                                      await ssh.execute(page);
-                                  if (execResult != null) {
-                                    print('Command executed successfully');
-                                  } else {
-                                    print('Failed to execute command');
-                                  }
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const TajMahalPage()),
-                                  );
-                                  break;
-
-                                case 'Colosseum':
-                                  SSH ssh =
-                                      SSH(); //Re-initialization of the SSH instance to avoid errors for beginners
-                                  await ssh.connectToLG();
-                                  SSHSession? execResult =
-                                      await ssh.execute(page);
-                                  if (execResult != null) {
-                                    print('Command executed successfully');
-                                  } else {
-                                    print('Failed to execute command');
-                                  }
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ColosseumPage()),
-                                  );
-                                  break;
-
-                                case 'The Great Pyramid':
-                                  SSH ssh =
-                                      SSH(); //Re-initialization of the SSH instance to avoid errors for beginners
-                                  await ssh.connectToLG();
-                                  SSHSession? execResult =
-                                      await ssh.execute(page);
-                                  if (execResult != null) {
-                                    print('Command executed successfully');
-                                  } else {
-                                    print('Failed to execute command');
-                                  }
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const PyramidPage()),
-                                  );
-                                  break;
-
-                                case 'The Great Wall of China':
-                                  SSH ssh =
-                                      SSH(); //Re-initialization of the SSH instance to avoid errors for beginners
-                                  await ssh.connectToLG();
-                                  SSHSession? execResult =
-                                      await ssh.execute(page);
-                                  if (execResult != null) {
-                                    print('Command executed successfully');
-                                  } else {
-                                    print('Failed to execute command');
-                                  }
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ChinaPage()),
-                                  );
-                                  break;
-
-                                case 'Christ the Redeemer':
-                                  SSH ssh =
-                                      SSH(); //Re-initialization of the SSH instance to avoid errors for beginners
-                                  await ssh.connectToLG();
-                                  SSHSession? execResult =
-                                      await ssh.execute(page);
-                                  if (execResult != null) {
-                                    print('Command executed successfully');
-                                  } else {
-                                    print('Failed to execute command');
-                                  }
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const RioPage()),
-                                  );
-                                  break;
-
-                                case 'Petra':
-                                  SSH ssh =
-                                      SSH(); //Re-initialization of the SSH instance to avoid errors for beginners
-                                  await ssh.connectToLG();
-                                  SSHSession? execResult =
-                                      await ssh.execute(page);
-                                  if (execResult != null) {
-                                    print('Command executed successfully');
-                                  } else {
-                                    print('Failed to execute command');
-                                  }
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const PetraPage()),
-                                  );
-                                  break;
-
-                                case 'Chichen Itza':
-                                  SSH ssh =
-                                      SSH(); //Re-initialization of the SSH instance to avoid errors for beginners
-                                  await ssh.connectToLG();
-                                  SSHSession? execResult =
-                                      await ssh.execute(page);
-                                  if (execResult != null) {
-                                    print('Command executed successfully');
-                                  } else {
-                                    print('Failed to execute command');
-                                  }
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ChichenPage()),
-                                  );
-                                  break;
-
-                                case 'Machu Picchu':
-                                  SSH ssh =
-                                      SSH(); //Re-initialization of the SSH instance to avoid errors for beginners
-                                  await ssh.connectToLG();
-                                  SSHSession? execResult =
-                                      await ssh.execute(page);
-                                  if (execResult != null) {
-                                    print('Command executed successfully');
-                                  } else {
-                                    print('Failed to execute command');
-                                  }
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const PeruPage()),
-                                  );
-                                  break;
-
-                                default:
-                                  break;
-                              }
-                            },
-                            child: Container(
-                              height: 25,
-                              width: 80,
-                              // color: Colors.green,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50)),
-                              child: const Center(
-                                child: Text("Let's Go",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12)),
-                              ),
-                            ),
-                          ),
-                        ]));
-              }),
-        )
-      ],
-    );
   }
 
   Column _popularBreakfasts() {
@@ -315,7 +106,7 @@ class DashboardPageState extends State<DashboardPage> {
           // decoration: const BoxDecoration(color: Colors.amber),
           child: ListView.separated(
               separatorBuilder: (context, index) => const SizedBox(
-                    width: 35,
+                    width: 25,
                   ),
               itemCount: categories.length,
               scrollDirection: Axis.horizontal,
@@ -537,11 +328,27 @@ class DashboardPageState extends State<DashboardPage> {
       title: const Row(children: [
         SizedBox(width: 15),
         Text(
-          'Welcome traveller',
+          'Food To Devour',
           style: TextStyle(color: Colors.white),
         ),
       ]),
       actions: [
+        Chip(
+            label: Row(children: [
+              const Text('LG Connection: '),
+              isConnected == true
+                  ? const Icon(
+                      Icons.circle,
+                      color: Colors.green,
+                      size: 20,
+                    )
+                  : const Icon(
+                      Icons.circle,
+                      color: Colors.red,
+                      size: 20,
+                    )
+            ]),
+            backgroundColor: Colors.white),
         const SizedBox(width: 15),
         IconButton(
             iconSize: 35,
