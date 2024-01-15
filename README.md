@@ -30,7 +30,7 @@ The UI is simple yet vibrant.
 
 # LG_Connection
 
-The App develops an SSH connection with the LG Rig. It has a config page which has four text fields namely ip address, username,port password, number of machines.
+The App develops an SSH connection with the LG Rig. It has a config page which has five text fields namely ip address, username,port, password, number of machines.
 After developing a proper connection, we go back to the dashboard page. On the various tabs, there exists a Let's Go button, which upon clicking sends a shell command to execute on the VM and takes our LG rig to that location.
 
 # LG_Connection Page
