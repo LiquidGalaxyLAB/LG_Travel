@@ -36,5 +36,5 @@ After developing a proper connection, we go back to the dashboard page. On the v
 # LG_Connection Page
 ![Screenshot 2024-01-15 181806](https://github.com/prithvihehe/LG_Travel/assets/122910425/23f8c2a6-b904-4f6c-9cd3-3fea0466926a)
 
-
+The LG Travel app was developed as a part of the KISS Flutter App Contest. 
 
